@@ -1,0 +1,99 @@
+table 'public vw_customer_performance'
+	lineageTag: d4970ca8-28ea-442f-9091-753b8c336ebb
+
+	column customer_unique_id
+		dataType: string
+		lineageTag: d3b55375-e50e-4142-b0ed-4297c46e9882
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		lineageTag: dda74435-c0fd-4a16-bb03-133e63a42ba3
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: bc2c2cfa-76f5-484c-a71f-941285cfcd09
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_order_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7bbc87b4-dc8c-4348-8e63-a703f34c9d96
+		summarizeBy: none
+		sourceColumn: first_order_date
+
+		variation Variation
+			isDefault
+			relationship: 0c0efce1-1e05-4305-a8c4-b1d3402dd2b2
+			defaultHierarchy: LocalDateTable_1fdcf876-834d-4c18-a5fc-5089101b2e1e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column last_order_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ddecab3a-6e2e-4e4b-97f5-017536029909
+		summarizeBy: none
+		sourceColumn: last_order_date
+
+		variation Variation
+			isDefault
+			relationship: d3aed8a2-f14b-4e48-887d-9160f79e48cc
+			defaultHierarchy: LocalDateTable_ef771860-1adb-40b8-853f-2cb4d5e1b825.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_revenue
+		dataType: double
+		lineageTag: d170ab82-60d2-4a54-b268-670276c491df
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_order_value
+		dataType: double
+		lineageTag: 2f063ea0-f1b4-447d-a2b7-a20f5324a0b1
+		summarizeBy: sum
+		sourceColumn: average_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column customer_type
+		dataType: string
+		lineageTag: 27ccc45b-73c5-490d-b909-8783d655953f
+		summarizeBy: none
+		sourceColumn: customer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public vw_customer_performance' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "brazilian_ecommerce"),
+				    public_vw_customer_performance = Source{[Schema="public",Item="vw_customer_performance"]}[Data]
+				in
+				    public_vw_customer_performance
+
+	annotation PBI_ResultType = Table
+

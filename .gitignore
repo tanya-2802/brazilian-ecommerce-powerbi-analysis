@@ -19,3 +19,12 @@ Thumbs.db
 
 # Local database/config files
 .env
+
+# Power BI local files
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# Power BI binary backup
+*.pbix
+# Duplicate raw review dataset
+data/olist_order_reviews_dataset.csv

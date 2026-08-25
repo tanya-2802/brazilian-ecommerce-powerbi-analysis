@@ -1,0 +1,109 @@
+table 'public vw_monthly_sales'
+	lineageTag: 5049b5eb-41b1-448c-aa3e-76f4df0e5b68
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: eb94e1d9-85c1-45bb-94c7-20c9be743494
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: 3923edb8-a430-4e42-bf91-25df51ea3145
+			defaultHierarchy: LocalDateTable_df740a3e-57e1-4cb1-92db-30446e894fd1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 70c5b6fa-bee2-4533-a569-b9762bb7b9c5
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: eaa523be-c32d-4026-87ef-2b3362e1fd5b
+		summarizeBy: sum
+		sourceColumn: total_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: double
+		lineageTag: 9b78e665-21ec-4148-ae3d-23215f2f869b
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_revenue
+		dataType: double
+		lineageTag: 51aef140-a8da-441f-b36d-a87bf89edb89
+		summarizeBy: sum
+		sourceColumn: freight_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_value
+		dataType: double
+		lineageTag: b51c5152-4b0b-4ba2-8612-a6fcd682a390
+		summarizeBy: sum
+		sourceColumn: total_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_order_value
+		dataType: double
+		lineageTag: 221afeb1-d279-4459-9d71-2f740762ad60
+		summarizeBy: sum
+		sourceColumn: average_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Month Year' =
+			
+			FORMAT('public vw_monthly_sales'[month], "MMM yyyy")
+		lineageTag: aabc5c15-e8c3-4afe-95f7-c815745e0e1c
+		summarizeBy: none
+		sortByColumn: 'Month Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Sort' =
+			
+			YEAR('public vw_monthly_sales'[month]) * 100
+			    + MONTH('public vw_monthly_sales'[month])
+		formatString: 0
+		lineageTag: b400b326-f092-4185-91b2-17824135dad3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public vw_monthly_sales' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "brazilian_ecommerce"),
+				    public_vw_monthly_sales = Source{[Schema="public",Item="vw_monthly_sales"]}[Data]
+				in
+				    public_vw_monthly_sales
+
+	annotation PBI_ResultType = Table
+

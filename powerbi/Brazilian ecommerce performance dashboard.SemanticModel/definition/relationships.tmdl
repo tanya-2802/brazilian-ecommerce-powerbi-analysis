@@ -1,0 +1,44 @@
+relationship 17aaba1b-ddde-4837-8e9f-11ebda6f77bd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_customer_satisfaction'.review_date
+	toColumn: LocalDateTable_429cbeaf-b59a-4840-982d-2fa8b0f26f42.Date
+
+relationship 0c0efce1-1e05-4305-a8c4-b1d3402dd2b2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_customer_performance'.first_order_date
+	toColumn: LocalDateTable_1fdcf876-834d-4c18-a5fc-5089101b2e1e.Date
+
+relationship d3aed8a2-f14b-4e48-887d-9160f79e48cc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_customer_performance'.last_order_date
+	toColumn: LocalDateTable_ef771860-1adb-40b8-853f-2cb4d5e1b825.Date
+
+relationship 3923edb8-a430-4e42-bf91-25df51ea3145
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_monthly_sales'.month
+	toColumn: LocalDateTable_df740a3e-57e1-4cb1-92db-30446e894fd1.Date
+
+relationship 9ffa6c5e-f5b6-4807-b938-d248601533db
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_delivery_performance'.order_date
+	toColumn: LocalDateTable_fe3719ec-af0d-4390-9cc5-aca059b0714e.Date
+
+relationship 8cd8e996-640e-4809-815c-773a893bc170
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_delivery_performance'.delivery_date
+	toColumn: LocalDateTable_9a684ec6-f24e-43a6-b9b8-34d2ad5638bf.Date
+
+relationship 5178e9ea-508b-4d43-bd9c-0525b8d95569
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_delivery_performance'.estimated_delivery_date
+	toColumn: LocalDateTable_f8d9c001-dafe-4480-a605-9b393397e565.Date
+
+relationship e4847873-ad96-4e3d-ac16-2c7d368597d7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_website_traffic'.visit_date
+	toColumn: LocalDateTable_79367d86-1afb-4138-9f85-3016b34c8fc1.Date
+
+relationship AutoDetected_db9a9b83-5c56-4690-9a9f-32c0e92bb61a
+	fromColumn: 'public vw_customer_satisfaction'.order_id
+	toColumn: 'public vw_delivery_performance'.order_id
+

@@ -1,0 +1,139 @@
+table 'public vw_category_performance'
+	lineageTag: 08b7286a-dbcd-4de7-8411-cea689c5c92a
+
+	measure 'Total Revenue' =
+			
+			SUM('public vw_monthly_sales'[revenue])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: b3c0af11-b002-49bc-9e2b-7d868a6b5cb4
+
+	measure 'Total Orders' =
+			
+			SUM('public vw_monthly_sales'[total_orders])
+		formatString: #,0
+		lineageTag: cb03f720-f3b1-4451-a907-701cff09f84a
+
+	measure 'Average Order Value' =
+			
+			DIVIDE(
+			    [Total Revenue],
+			    [Total Orders]
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: c67d515c-7ff8-4905-9630-aaa822f55c36
+
+	measure 'Average Review Score' =
+			
+			AVERAGE('public vw_customer_satisfaction'[review_score])
+		lineageTag: 2fc16b62-b242-4962-8c7e-c5521ecfb978
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'On-Time Delivery %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('public vw_delivery_performance'),
+			        'public vw_delivery_performance'[delivery_status] = "On Time"
+			    ),
+			    COUNTROWS('public vw_delivery_performance')
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 856903e3-1e02-4c21-bb2b-8d2e366e54f9
+
+	measure Measure
+		lineageTag: 4b3c8bd5-e01c-4e01-bbbd-c1ca8a86cf7c
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Total Customers' =
+			
+			COUNTROWS('public vw_customer_performance')
+		formatString: 0
+		lineageTag: c30da754-fadc-4bec-9cf8-55c0c96cc823
+
+	column product_category
+		dataType: string
+		lineageTag: b57ccf20-0cb6-44de-9d4e-f1e0461f5680
+		summarizeBy: none
+		sourceColumn: product_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column items_sold
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c9a06bc-cb88-46b4-82e7-bee6d888f721
+		summarizeBy: sum
+		sourceColumn: items_sold
+
+		annotation SummarizationSetBy = Automatic
+
+	column orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c71426d-43bd-429a-b5dc-a8ae6b779cdd
+		summarizeBy: sum
+		sourceColumn: orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: double
+		lineageTag: b4cba92f-2c35-4ce5-90b9-144b1d0d613b
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_value
+		dataType: double
+		lineageTag: dda517d7-f869-4dae-9bac-6b76a06c2a78
+		summarizeBy: sum
+		sourceColumn: freight_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_value
+		dataType: double
+		lineageTag: 9713a687-8da0-49ba-a649-e8248411c31e
+		summarizeBy: sum
+		sourceColumn: total_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_item_price
+		dataType: double
+		lineageTag: e3149ab4-bfdf-47eb-b2af-d433b6a600da
+		summarizeBy: sum
+		sourceColumn: average_item_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Month Year' =
+			
+			FORMAT('public vw_monthly_sales'[month], "MMM yyyy")
+		lineageTag: df3e495f-5bca-40f9-9ee2-f9babc70c2df
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public vw_category_performance' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "brazilian_ecommerce"),
+				    public_vw_category_performance = Source{[Schema="public",Item="vw_category_performance"]}[Data]
+				in
+				    public_vw_category_performance
+
+	annotation PBI_ResultType = Table
+

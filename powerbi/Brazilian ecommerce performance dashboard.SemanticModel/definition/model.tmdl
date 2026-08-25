@@ -1,0 +1,34 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["public vw_category_performance","public vw_customer_satisfaction","public vw_customer_performance","public vw_monthly_sales","public vw_payment_performance","public vw_delivery_performance","public vw_website_traffic"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'public vw_category_performance'
+ref table 'public vw_customer_satisfaction'
+ref table DateTableTemplate_a5d8ecee-9db1-4ad8-97e1-fbd031bd317d
+ref table LocalDateTable_429cbeaf-b59a-4840-982d-2fa8b0f26f42
+ref table 'public vw_customer_performance'
+ref table LocalDateTable_1fdcf876-834d-4c18-a5fc-5089101b2e1e
+ref table LocalDateTable_ef771860-1adb-40b8-853f-2cb4d5e1b825
+ref table 'public vw_monthly_sales'
+ref table LocalDateTable_df740a3e-57e1-4cb1-92db-30446e894fd1
+ref table 'public vw_payment_performance'
+ref table 'public vw_delivery_performance'
+ref table LocalDateTable_fe3719ec-af0d-4390-9cc5-aca059b0714e
+ref table LocalDateTable_9a684ec6-f24e-43a6-b9b8-34d2ad5638bf
+ref table LocalDateTable_f8d9c001-dafe-4480-a605-9b393397e565
+ref table 'public vw_website_traffic'
+ref table LocalDateTable_79367d86-1afb-4138-9f85-3016b34c8fc1
+
+ref cultureInfo en-US
+

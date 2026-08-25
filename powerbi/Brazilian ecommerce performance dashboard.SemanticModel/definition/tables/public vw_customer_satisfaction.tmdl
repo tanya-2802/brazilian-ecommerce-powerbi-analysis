@@ -1,0 +1,63 @@
+table 'public vw_customer_satisfaction'
+	lineageTag: 30ca9ce9-f768-4933-b001-323c571db835
+
+	column order_id
+		dataType: string
+		lineageTag: 674d8ecd-d861-47ad-bdc1-be588508751a
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 9f5a49fc-787a-4014-8eef-858369cfcde8
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_score
+		dataType: int64
+		formatString: 0
+		lineageTag: e7242702-9ec6-459f-a8d6-ca0c3738d657
+		summarizeBy: sum
+		sourceColumn: review_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_sentiment
+		dataType: string
+		lineageTag: 8f9d9741-625f-4bb2-b2b4-f9dedb837c19
+		summarizeBy: none
+		sourceColumn: review_sentiment
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8aaa566b-830e-4bfc-9da7-ea534872559a
+		summarizeBy: none
+		sourceColumn: review_date
+
+		variation Variation
+			isDefault
+			relationship: 17aaba1b-ddde-4837-8e9f-11ebda6f77bd
+			defaultHierarchy: LocalDateTable_429cbeaf-b59a-4840-982d-2fa8b0f26f42.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'public vw_customer_satisfaction' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "brazilian_ecommerce"),
+				    public_vw_customer_satisfaction = Source{[Schema="public",Item="vw_customer_satisfaction"]}[Data]
+				in
+				    public_vw_customer_satisfaction
+
+	annotation PBI_ResultType = Table
+

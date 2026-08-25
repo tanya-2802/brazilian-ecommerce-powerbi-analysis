@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Brazilian ecommerce performance dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9d8422f8-c5dd-4366-ad7c-3b2f3b689404"
+  }
+}

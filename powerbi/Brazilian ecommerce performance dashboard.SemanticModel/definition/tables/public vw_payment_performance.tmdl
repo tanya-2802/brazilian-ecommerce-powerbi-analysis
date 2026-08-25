@@ -1,0 +1,70 @@
+table 'public vw_payment_performance'
+	lineageTag: f4de50e7-4aec-4f65-a4fb-e264b1611a40
+
+	column payment_type
+		dataType: string
+		lineageTag: 13511f18-892a-4cd0-8cdd-26ee99920e62
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_records
+		dataType: int64
+		formatString: 0
+		lineageTag: 3454106b-97ac-43c7-acc4-82d5572b3ea5
+		summarizeBy: sum
+		sourceColumn: payment_records
+
+		annotation SummarizationSetBy = Automatic
+
+	column orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e5bf485-2066-4b20-8e43-3464ca6950c2
+		summarizeBy: sum
+		sourceColumn: orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_value
+		dataType: double
+		lineageTag: 4b5e5ebb-9ad1-4a21-9f08-19c708cfa254
+		summarizeBy: sum
+		sourceColumn: payment_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_payment
+		dataType: double
+		lineageTag: 6a421244-447b-44ef-81dd-4578a63b0cbf
+		summarizeBy: sum
+		sourceColumn: average_payment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_installments
+		dataType: double
+		lineageTag: 2f3b3f61-520a-4dfb-915f-4b53c89a590e
+		summarizeBy: sum
+		sourceColumn: average_installments
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public vw_payment_performance' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "brazilian_ecommerce"),
+				    public_vw_payment_performance = Source{[Schema="public",Item="vw_payment_performance"]}[Data]
+				in
+				    public_vw_payment_performance
+
+	annotation PBI_ResultType = Table
+

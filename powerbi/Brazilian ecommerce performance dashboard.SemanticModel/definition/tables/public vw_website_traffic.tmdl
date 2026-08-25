@@ -1,0 +1,93 @@
+table 'public vw_website_traffic'
+	lineageTag: a3be4043-f3cd-46f8-9e70-cb8535594d49
+
+	column visit_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a4643e17-051c-41de-a247-ce69771339bb
+		summarizeBy: none
+		sourceColumn: visit_date
+
+		variation Variation
+			isDefault
+			relationship: e4847873-ad96-4e3d-ac16-2c7d368597d7
+			defaultHierarchy: LocalDateTable_79367d86-1afb-4138-9f85-3016b34c8fc1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column day
+		dataType: string
+		lineageTag: ba9cc298-860e-4b71-b273-7f34316cbb4e
+		summarizeBy: none
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 55289a4d-4058-4a10-bb52-b6fbe70ae178
+		summarizeBy: sum
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_loads
+		dataType: int64
+		formatString: 0
+		lineageTag: 2391620b-f9b2-46c4-b5cd-b474e5aa76cd
+		summarizeBy: sum
+		sourceColumn: page_loads
+
+		annotation SummarizationSetBy = Automatic
+
+	column unique_visits
+		dataType: int64
+		formatString: 0
+		lineageTag: d5c7f568-3760-48a0-bd23-9a89ee008282
+		summarizeBy: sum
+		sourceColumn: unique_visits
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_time_visits
+		dataType: int64
+		formatString: 0
+		lineageTag: 30dd896c-0994-4b63-a462-6134411446ef
+		summarizeBy: sum
+		sourceColumn: first_time_visits
+
+		annotation SummarizationSetBy = Automatic
+
+	column returning_visits
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d9e3ff9-2911-462c-b715-dade9f1adb8f
+		summarizeBy: sum
+		sourceColumn: returning_visits
+
+		annotation SummarizationSetBy = Automatic
+
+	column returning_visit_rate
+		dataType: double
+		lineageTag: 1344450e-d0b4-47a5-b1d2-a06d6a1f04b5
+		summarizeBy: sum
+		sourceColumn: returning_visit_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public vw_website_traffic' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "brazilian_ecommerce"),
+				    public_vw_website_traffic = Source{[Schema="public",Item="vw_website_traffic"]}[Data]
+				in
+				    public_vw_website_traffic
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,108 @@
+table 'public vw_delivery_performance'
+	lineageTag: 20f7c64c-78c6-4127-a64e-b264e285fafc
+
+	column order_id
+		dataType: string
+		lineageTag: 5e3b17bf-05a2-4fed-87b8-648fddfff300
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 64ac4c9a-99be-4111-b903-d715f03f9167
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: bb24d4fa-e7a9-45df-a96e-992e68edbe65
+		summarizeBy: none
+		sourceColumn: order_date
+
+		variation Variation
+			isDefault
+			relationship: 9ffa6c5e-f5b6-4807-b938-d248601533db
+			defaultHierarchy: LocalDateTable_fe3719ec-af0d-4390-9cc5-aca059b0714e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column delivery_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 16683fa7-caf4-4ee1-b909-2601bd82f908
+		summarizeBy: none
+		sourceColumn: delivery_date
+
+		variation Variation
+			isDefault
+			relationship: 8cd8e996-640e-4809-815c-773a893bc170
+			defaultHierarchy: LocalDateTable_9a684ec6-f24e-43a6-b9b8-34d2ad5638bf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column estimated_delivery_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 24357bb0-fb15-4bbb-ac0e-0f93723ba552
+		summarizeBy: none
+		sourceColumn: estimated_delivery_date
+
+		variation Variation
+			isDefault
+			relationship: 5178e9ea-508b-4d43-bd9c-0525b8d95569
+			defaultHierarchy: LocalDateTable_f8d9c001-dafe-4480-a605-9b393397e565.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column delivery_days
+		dataType: double
+		lineageTag: b2510e52-361e-4d3b-90d2-265bd7966e9d
+		summarizeBy: sum
+		sourceColumn: delivery_days
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column days_vs_estimate
+		dataType: double
+		lineageTag: 26e21663-7c43-4227-a948-8e23b12b6723
+		summarizeBy: sum
+		sourceColumn: days_vs_estimate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column delivery_status
+		dataType: string
+		lineageTag: 55494c5e-8b3a-49c2-83a8-88b40ce87db3
+		summarizeBy: none
+		sourceColumn: delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public vw_delivery_performance' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "brazilian_ecommerce"),
+				    public_vw_delivery_performance = Source{[Schema="public",Item="vw_delivery_performance"]}[Data]
+				in
+				    public_vw_delivery_performance
+
+	annotation PBI_ResultType = Table
+
