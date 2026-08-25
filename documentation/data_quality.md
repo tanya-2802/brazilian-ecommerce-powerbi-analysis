@@ -4,7 +4,7 @@
 
 Data quality checks were performed across the Olist Brazilian E-Commerce dataset to identify issues that could affect analytical accuracy, joins, KPI calculations, and downstream reporting.
 
-The approach was to retain source records wherever possible and explicitly document exceptions rather than silently deleting or imputing data.
+The approach is to retain source records wherever possible and explicitly document exceptions rather than silently deleting or imputing data.
 
 ## Key Data Quality Findings
 
@@ -114,7 +114,7 @@ The project follows these principles:
 1. **Preserve source data** wherever possible.
 2. **Do not silently delete records** because of missing or unusual values.
 3. **Do not impute values without a defensible business rule.**
-4. **Validate missing values against business context** such as order lifecycle status.
+4. **Validate missing values against business context**, such as order lifecycle status.
 5. **Use the correct analytical grain** before joining datasets.
 6. **Document exceptions and their treatment** so analytical results remain reproducible.
 
