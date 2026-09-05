@@ -1,74 +1,69 @@
 # Brazilian E-Commerce Data Analysis & Power BI Dashboard
 
-End-to-end analysis of the **Brazilian E-Commerce Public Dataset by Olist**, using Python, SQL, and Power BI to profile data, validate data quality, perform analysis, and build an interactive business dashboard.
+> End-to-end analysis of the Brazilian E-Commerce Public Dataset by Olist using Python, SQL, and Power BI to analyze e-commerce performance and customer behaviour.
 
-## Project Objective
+## Objective
 
-Analyze e-commerce performance across:
-
-- Revenue and orders
+Analyze:
+- Sales and revenue performance
+- Customer behaviour
 - Product categories
 - Payment methods
-- Customer reviews
 - Delivery performance
-- Key business KPIs
+- Customer reviews
 
 ## Tools
 
-- **Python**: Data profiling and quality analysis
-- **SQL**: Data loading, validation, analysis, and analytical views
-- **Power BI**: Data modeling, KPIs, visualization, and interactive dashboard
-- **Git/GitHub**: Version control and documentation
+- Python
+- PostgreSQL / SQL
+- Power BI
+- Git / GitHub
 
-## Project Workflow
+## Workflow
 
-**Raw Data → Python Profiling → Data Quality Validation → SQL Analysis → Analytical Views → Power BI Model → Dashboard → Business Insights**
-
+```text
+Raw Data → Python Profiling → Data Quality → SQL Analysis → Power BI → Dashboard → Insights
+```
 ## Dashboard
 
-The Power BI dashboard includes:
+### Page 1: Executive Overview
 
-- Total Revenue
-- Total Orders
-- Average Order Value
-- Monthly Revenue Trend
-- Revenue by Product Category
-- Payment Value by Method
-- Customer Review Distribution
-- Delivery Status Distribution
-- Date Range filter
-- Product Category filter
-- Payment Type filter
-- Reset Filters interaction
-- Key Takeaways section
+Revenue, orders, customers, product categories, payments, reviews, and delivery performance.
+
+**Screenshot:**![alt text](<Screenshot 2026-09-05 182653.png>) 
+
+### Page 2: Sales & Customer Analysis
+
+Customer segments, revenue by customer segment, and monthly customer growth.
+
+**Screenshot:**![alt text](<Screenshot 2026-09-05 182711.png>)
+
+## Key Insights
+
+- Repeat customers represent approximately 3.0% of the customer base.
+- One-time customers contribute the majority of revenue.
+- Monthly customer activity shows an overall upward trend.
 
 ## Data Quality
 
-The project includes documented validation of:
+Data was profiled and validated for missing values, duplicates, identifier issues, incomplete product information, payment issues, and other quality concerns.
 
-- Duplicate and non-unique identifiers
-- Missing order lifecycle timestamps
-- Incomplete product metadata
-- Missing product physical attributes
-- Invalid payment installment values
-- Zero product weights
+Detailed documentation:
 
-Data-quality issues are documented with their impact and treatment rather than being silently removed or imputed.
-
-See [`documentation/data_quality.md`](documentation/data_quality.md).
+[`documentation/data_quality.md`](documentation/data_quality.md)
 
 ## Repository Structure
 
-```text
-Brazilian-Ecommerce-BI/
-├── data/             # Source and prepared datasets
-├── documentation/    # Data dictionary and data-quality report
-├── powerbi/          # Power BI PBIP project
-├── python/           # Python profiling notebook
-├── sql/              # SQL tables, validation, analysis and views
-├── .gitignore
-└── README.md 
-``` 
+```
+data/
+documentation/
+powerbi/
+python/
+sql/
+screenshots/
+README.md
+```
+
 ## Outcome
 
-This project demonstrates practical experience in data profiling, data quality validation, SQL analysis, data modeling, Power BI dashboard development, KPI reporting, and business-focused data interpretation.
+Demonstrates practical experience in Python, SQL, Power BI, data quality validation, dashboard development, customer analysis, and business-focused insights.
