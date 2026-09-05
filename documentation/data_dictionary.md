@@ -130,7 +130,3 @@ Further validation is handled through the project's SQL data-quality workflow, i
 - Numeric validation
 - Referential integrity
 - Cross-table reconciliation
-
-## Related Documentation
-
-- [Data Quality Report](data_quality.md)

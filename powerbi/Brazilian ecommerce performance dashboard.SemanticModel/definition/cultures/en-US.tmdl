@@ -9555,19 +9555,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Customer_Segment"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Customer Segment": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "measure.total_customers_1": {
 			      "Definition": {
@@ -9576,19 +9564,7 @@ cultureInfo en-US
 			          "ConceptualProperty": "Total Customers 1"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Total Customers": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    }
 			  },
 			  "Relationships": {

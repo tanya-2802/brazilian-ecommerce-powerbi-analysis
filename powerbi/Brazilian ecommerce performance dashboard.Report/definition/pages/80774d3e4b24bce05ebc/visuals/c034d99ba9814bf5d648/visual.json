@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "c034d99ba9814bf5d648",
+  "position": {
+    "x": 1423.3333333333335,
+    "y": 103.33333333333334,
+    "z": 16000,
+    "height": 156.66666666666669,
+    "width": 478.33333333333337,
+    "tabOrder": 16000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Customer Insights",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "16pt",
+                      "color": "#172554"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Repeat customers represent only 3.0% of the customer base.",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#172554"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• One-time customers contribute the majority of revenue.",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#172554"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Monthly customer activity shows a strong upward trend.",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#172554"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

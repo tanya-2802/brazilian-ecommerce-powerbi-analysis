@@ -1,6 +1,24 @@
 table 'public vw_customer_performance'
 	lineageTag: d4970ca8-28ea-442f-9091-753b8c336ebb
 
+	measure 'Repeat Customer %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('public vw_customer_performance'),
+			        'public vw_customer_performance'[customer_type] = "Repeat"
+			    ),
+			    COUNTROWS('public vw_customer_performance')
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d34c1472-ddfb-483e-ac3c-b4e4f6b51bc8
+
+	measure 'Avg Orders per Customer' =
+			
+			AVERAGE('public vw_customer_performance'[total_orders])
+		formatString: 0.0
+		lineageTag: 1f66e3cb-bab0-42c7-9074-8d014ab1eee3
+
 	column customer_unique_id
 		dataType: string
 		lineageTag: d3b55375-e50e-4142-b0ed-4297c46e9882
